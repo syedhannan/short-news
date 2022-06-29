@@ -1,0 +1,38 @@
+
+<div *ngIf="obtainedData; else otherData" class="row">
+  <span class="col-6 col-sm-3 mb-4" *ngFor="let data of newsArticles">
+    <div class="card" style="width: 18rem">
+      <a href="{{ data['url'] }}" target="_blank">
+        <img
+          class="card-img-top"
+          src="{{
+            data['urlToImage'] ||
+              'https://st.depositphotos.com/1006899/3776/i/950/depositphotos_37765339-stock-photo-news.jpg'
+          }}"
+          alt="{{ data['title'] }}"
+          style="width: 17rem; height: 11rem"
+        />
+        <div class="card-body">
+          <p class="card-text">
+            <strong
+              ><span style="font-style: italic">{{ data["title"] }}</span> -
+              {{ data["author"] }}</strong
+            >
+          </p>
+        </div>
+      </a>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          {{ data["publishedAt"] | date: "medium" }}
+        </li>
+
+        <li class="list-group-item">{{ data["description"] }}</li>
+      </ul>
+    </div>
+    &nbsp;
+  </span>
+</div>
+
+<ng-template #otherData>
+  No News Available for the selected category
+</ng-template>
